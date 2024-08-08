@@ -1,6 +1,6 @@
 # AWS Lambda Function to Run SSM Document on Tagged Instances
 
-This repository contains an AWS Lambda function that triggers an SSM document on EC2 instances based on key-value tags.
+This repository contains an AWS Lambda function that triggers an SSM document (including document yaml) on EC2 instances based on key-value tags.
 
 ## Script Explanation
 
