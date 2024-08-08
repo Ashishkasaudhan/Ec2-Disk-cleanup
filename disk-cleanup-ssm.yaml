@@ -1,0 +1,19 @@
+---
+schemaVersion: '2.2'
+description: "Document to clean up disk space if usage exceeds 80%"
+assumeRole: "arn:aws:iam::account-id:role/YourSSMRole"
+mainSteps:
+  - name: CheckDiskSpaceAndCleanup
+    action: 'aws:runShellScript'
+    inputs:
+      runCommand:
+        - "echo 'Checking disk space...'"
+        - "DISK_USAGE=$(df / | grep / | awk '{print $5}' | sed 's/%//')"
+        - "if [ $DISK_USAGE -gt 80 ]; then"
+        - "  echo 'Disk usage is above 80%. Performing cleanup...'"
+        - "  sudo rm -rf /var/log/*.log"  # Example command, replace with your actual cleanup commands
+        - "  sudo rm -rf /tmp/*"  # Example command, replace with your actual cleanup commands
+        - "  echo 'Disk cleanup completed.'"
+        - "else"
+        - "  echo 'Disk usage is below 80%. No cleanup needed.'"
+        - "fi"

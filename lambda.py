@@ -1,33 +1,3 @@
-# AWS Lambda Function to Run SSM Document on Tagged Instances
-
-This repository contains an AWS Lambda function that triggers an SSM document on EC2 instances based on key-value tags.
-
-## Script Explanation
-
-### Initialize boto3 clients
-We create clients for both SSM and EC2 services.
-
-### Specify Parameters
-Define the SSM document name and the key-value tag pair to filter instances.
-
-### Describe Instances
-Use the `describe_instances` method with a filter to get instances matching the specified tags.
-
-### Extract Instance IDs
-Iterate over the response to extract instance IDs.
-
-### Check Instance IDs
-Return a 404 response if no instances are found.
-
-### Send SSM Command
-Trigger the SSM document on the found instances using `send_command`.
-
-### Return Response
-Return the response details or handle exceptions and return error messages.
-
-## Lambda Function Code
-
-```python
 import json
 import boto3
 from datetime import datetime
