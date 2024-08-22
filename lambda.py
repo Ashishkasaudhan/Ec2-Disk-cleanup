@@ -48,7 +48,7 @@ def lambda_handler(event, context):
         # Trigger the SSM Run Command
         ssm_response = ssm_client.send_command(
             InstanceIds=instance_ids,
-            DocumentName=document_name
+            DocumentName=CheckDiskSpaceAndCleanup
         )
         
         # Return the command ID and other response details
